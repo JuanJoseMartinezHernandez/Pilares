@@ -1,0 +1,33 @@
+Permisos de archivos y directorios IMPRIMIR ARTÍCULO
+
+Se concede permiso para copiar, distribuir y/o modificar este documento siempre y cuando se cite al autor y la fuente de linuxtotal.com.mx y según los términos de la GNU Free Documentation License, Versión 1.2 o cualquiera posterior publicada por la Free Software Foundation.
+
+
+¿Has visto esa combinación de r,w,x y - cuando listas un directorio?, tienes cierta idea que son los permisos, pero ¿como se usan y como funcionan?. En este manual sobre permisos de archivos y directorios de LinuxTotal entenderás totalmente su uso y la manera correcta de utilizarlos.
+
+En Linux, todo archivo y directorio tiene tres niveles de permisos de acceso: los que se aplican al propietario del archivo, los que se aplican al grupo que tiene el archivo y los que se aplican a todos los usuarios del sistema. Podemos ver los permisos cuando listamos un directorio con ls -l:
+
+$> ls -l
+-rwxrwxr--  1 sergio ventas    9090 sep  9 14:10 presentacion
+-rw-rw-r--  1 sergio sergio 2825990 sep  7 16:36 reporte1
+drwxr-xr-x  2 sergio sergio    4096 ago 27 11:41 videos
+Veamos por partes el listado, tomando como ejemplo la primera línea. La primera columna (-rwxrwxr--) es el tipo de archivo y sus permisos, la siguiente columna (1) es el número de enlaces al archivo, la tercera columna (sergio) representa al propietario del archivo, la cuarta columna (ventas) representa al grupo al que pertence al archivo y las siguientes son el tamaño, la fecha y hora de última modificación y por último el nombre delarchivo o directorio.
+
+El primer caracter al extremo izquierdo, representa el tipo de archivo, los posibles valores para esta posición son los siguientes:
+
+- un guión representa un archivo comun (de texto, html, mp3, jpg, etc.)
+d representa un directorio
+l link, es decir un enlace o acceso directo
+b binario, un archivo generalmente ejecutable
+Los siguientes 9 restantes, representan los permisos del archivo y deben verse en grupos de 3.
+
+Los tres primeros representan los permisos para el propietario del archivo. Los tres siguientes son los permisos para el grupo del archivo y los tres últimos son los permisos para el resto del mundo o otros.
+
+rwx       rwx     rwx
+usuario   grupo   otros
+En cuanto a las letras, su significado son los siguientes:
+
+r read - lectura
+w write - escritura (en archivos: permiso de modificar, en directorios: permiso de crear archivos en el dir.)
+x execution - ejecución
+Las nueve posiciones de permisos son en realidad un bit que o esta encendido (mostrado con su letra correspondiente) o esta apagado (mostrado con un guión -), asi que, por ejemplo, permisos como rwxrw-r--, indicaría que los permisos del propietario (rwx) puede leer, escribir y ejecutar el archivo, el grupo (o sea los usuarios que esten en mismo grupo del archivo) (rw-) podrá leer y escribir pero no ejecutar el archivo, y cualquier otro usuario del sistema (r--), solo podrá leer el archivo, ya que los otros dos bits de lectura y ejecucción no se encuentran encendidos o activado
